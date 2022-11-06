@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Перша стаття",
+    "author": "Oleksandr",
+    "date": "2016-12-09",
+    "text": " Lorem Ipsum це псевдо-латинський текст, що використовується у\n веб-дизайні, типографіці, верстці, друці замість англійської, щоб\n підкреслити елементи дизайну над змістом. Це також називається\n заповнювач (або наповнювач) тексту. Є зручним інструментом для\n макетів. Він допомагає намітити візуальні елементи в документі або\n презентації, наприклад, друк, шрифт, або макет. Lorem Ipsum в\n основному пишуть латинським текстом за класичною роботою автора та\n філософа Цицерона. Це коли слова та букви були змінені додаванням\n або видаленням, так навмисно роблять, щоб зміст тексту був\n безглуздим, і він не є справжньою, правильною чи зрозумілою\n Латинською мовою. Тому Lorem Ipsum все ще нагадує класичну латину,\n але він насправді не має ніякого значення."
+  },
+  {
+    "title": "Друга стаття",
+    "author": "Roma",
+    "date": "2017-07-12",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod\n tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim\nveniam, quis nostrum exercitationem ullam corporis suscipit\nlaboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute\niure reprehenderit in voluptate velit esse cillum dolore eu fugiat\nnulla pariatur. Excepteur sint obcaecat cupiditat non proident,\nsunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "Третя статья",
+    "author": "Michail",
+    "date": "2022-07-12",
+    "text": "Слава УкраЇні"
+  }
+]
