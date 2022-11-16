@@ -1,6 +1,6 @@
 import psycopg2
 from contextlib import contextmanager
-from psycopg2 import DatabaseError
+from psycopg2 import Error
 
 
 @contextmanager
@@ -11,7 +11,7 @@ def create_connection():
         conn = psycopg2.connect(host='localhost', database='test', user='postgres', password='567234')
         yield conn
         conn.commit()
-    except DatabaseError as err:
+    except Error as err:
         print(err)
         conn.rollback()
     finally:
