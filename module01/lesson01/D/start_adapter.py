@@ -9,8 +9,6 @@ Dependency inversion. Согласно принципу модули должн�
 
 
 # https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=11
-# [{'ccy': 'EUR', 'base_ccy': 'UAH', 'buy': '37.89060', 'sale': '39.06250'},
-# {'ccy': 'USD', 'base_ccy': 'UAH', 'buy': '36.56860', 'sale': '37.45318'}]
 class ApiClient:
     def __init__(self, fetch: requests):
         self.fetch = fetch
@@ -30,7 +28,6 @@ def pretty_view(data: list[dict]):
         print(pattern.format(currency, sale, buy))
 
 
-# {'EUR': {'buy': 37.8906, 'sale': 39.0625}, 'USD': {'buy': 36.5686, 'sale': 37.45318}}
 def data_adapter(data: dict) -> list[dict]:
     return [{f"{el.get('ccy')}": {"buy": float(el.get('buy')), "sale": float(el.get('sale'))}} for el in data]
 
