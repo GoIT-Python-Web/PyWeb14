@@ -1,6 +1,6 @@
 # Створення таблиць
 
-Для демонстрації використовуємо SQLite базу даних. Виконуємо оператори пояснюючи кожен рядок.
+Для демонстрації використовуємо SQLite базу даних та приклади з конспекту. Виконуємо оператори пояснюючи кожен рядок.
 
 ```sqlite
 CREATE TABLE IF NOT EXISTS genders (
@@ -41,6 +41,10 @@ CREATE TABLE IF NOT EXISTS contacts (
 # Додаємо дані до бази даних
 
 ```sql
+INSERT INTO genders (id, name)
+VALUES (1, 'male'), (2, 'female');
+
+
 INSERT INTO users (id, name, email, password, age, gender_id)
 VALUES (1, 'Boris', 'boris@test.com', 'password', 23, 1),
 (2, 'Alina', 'alina@test.com', 'password', 32, 2),
@@ -128,7 +132,7 @@ WHERE user_id IN (SELECT id
     FROM users
     WHERE age < 35);
 ```
-    
+
 Знайти всі контакти, але через `JOIN` добавити стовпчик з іменем користувача, якому належить контакт
 
 ```sql

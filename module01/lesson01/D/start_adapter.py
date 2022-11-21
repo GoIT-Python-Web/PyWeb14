@@ -1,38 +1,45 @@
 import requests
-import xmltodict
 
 """
-Dependency inversion. Согласно принципу модули должны зависеть от других модулей не напрямую, а от абстракций. Модули верхних уровней не должны зависеть от модулей нижних уровней. 
+Dependency inversion. Согласно принципу модули должны зависеть от других модулей не напрямую, а от абстракций. Модули 
+верхних уровней не должны зависеть от модулей нижних уровней. 
 
 Добавляем Connection и RequestConnection в работу класса ApiClient
 """
 
+
 # https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=11
+# [{'ccy': 'EUR', 'base_ccy': 'UAH', 'buy': '37.89060', 'sale': '39.06250'},
+# {'ccy': 'USD', 'base_ccy': 'UAH', 'buy': '36.56860', 'sale': '37.45318'}]
 class ApiClient:
     def __init__(self, fetch: requests):
         self.fetch = fetch
 
-    def get_xml(self, url):
+    def get_json(self, url):
         response = self.fetch.get(url)
-        return response.text
+        return response.json()
 
 
-def parse_usd(data):
-    exc = data.get("exchangerates", None)
-    if exc:
-        return exc.get("row")[0].get("exchangerate").get("@buy")
-    return None
+def pretty_view(data: list[dict]):
+    pattern = '|{:^10}|{:^10}|{:^10}|'
+    print(pattern.format('currency', 'sale', 'buy'))
+    for el in data:
+        currency, *_ = el.keys()
+        buy = el.get(currency).get('buy')
+        sale = el.get(currency).get('sale')
+        print(pattern.format(currency, sale, buy))
 
 
-def xml_adapter(xml):
-    return dict(xmltodict.parse(xml))
+# {'EUR': {'buy': 37.8906, 'sale': 39.0625}, 'USD': {'buy': 36.5686, 'sale': 37.45318}}
+def data_adapter(data: dict) -> list[dict]:
+    return [{f"{el.get('ccy')}": {"buy": float(el.get('buy')), "sale": float(el.get('sale'))}} for el in data]
 
 
 if __name__ == "__main__":
     client = ApiClient(requests)
-    data = client.get_xml(
+    data = client.get_json(
         "https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=11"
     )
-    print(parse_usd(xml_adapter(data)))
+    pretty_view(data_adapter(data))
 
-# ApiClient -> Adapter -> parse_usd
+# ApiClient -> Adapter -> pretty_view
