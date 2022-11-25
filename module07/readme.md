@@ -48,3 +48,29 @@ py .\lesson01\main.py --action create --title Test --desc 'Short text' --login k
 Розкоментити модель `ContactPerson` та властивість `contacts` моделі `Student`. Виконати нову міграцію.
 
 Виконати `seed/contact.py`, а потім запрос з файлу `main_contact.py`. Пояснюючи кожен крок.
+
+Показати хуки
+
+```python
+@listens_for(Student, 'before_insert')
+def generate_license(mapper, connect, target):
+     target.new_first_name()
+```
+
+```python
+class Student(Base):
+	...
+
+    def new_first_name(self):
+        self.first_name = f"Mr.{self.first_name}"
+        return self.first_name
+```
+
+Показати гібрідні (вірутальні) властивості
+
+```python
+    # Властівість для відображення (гибрідні, віртулаьні в інших мовах)
+    @hybrid_property
+    def fullname(self):
+        return self.first_name + ' ' + self.last_name
+```

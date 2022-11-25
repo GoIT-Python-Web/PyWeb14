@@ -17,6 +17,7 @@ def get_students():
     students = session.query(Student).options(joinedload('teachers'), joinedload('contacts')).all()
     for s in students:
         print(vars(s))
+        print(s.fullname)
         print(f"{[f'id: {t.id} first_name: {t.first_name}' for t in s.teachers]}")
         print(f"{[f'id: {c.id} first_name: {c.first_name}' for c in s.contacts]}")
 

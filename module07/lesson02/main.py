@@ -46,6 +46,7 @@ def get_teachers_filter():
         print(f"{[f'id: {s.id} first_name: {s.first_name}' for s in t.students]}")
 
 
+
 if __name__ == '__main__':
     print(help_message)
     while True:

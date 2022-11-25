@@ -1,5 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Date
 from sqlalchemy.orm import relationship
+from sqlalchemy.event import listens_for
+from sqlalchemy.ext.hybrid import hybrid_property
 
 from .db import Base
 
@@ -26,6 +28,22 @@ class Student(Base):
     address = Column('address', String(100), nullable=True)
     teachers = relationship('Teacher', secondary='teachers_to_students', back_populates='students')
     contacts = relationship('ContactPerson', back_populates='student')
+
+    # Властівість для відображення (гибрідні, віртулаьні в інших мовах)
+    @hybrid_property
+    def fullname(self):
+        return self.first_name + ' ' + self.last_name
+
+
+    def new_first_name(self):
+        self.first_name = f"Mr.{self.first_name}"
+        return self.first_name
+
+
+# Показати події. Можна викорастити для хешування паролю. Частіше використовують термін хук (hook)
+# @listens_for(Student, 'before_insert')
+# def generate_license(mapper, connect, target):
+#     target.new_first_name()
 
 
 class TeacherStudent(Base):
