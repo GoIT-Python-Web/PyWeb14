@@ -38,3 +38,18 @@ py .\finish_main.py --action find
 ### Папка `redis_example`
 
 Трошки прикладів з Redis. Redis через docker контейнер
+
+## Друге заняття
+
+RabitMQ
+
+- `01_simple` https://www.rabbitmq.com/tutorials/tutorial-one-python.html
+- `02_tasks` https://www.rabbitmq.com/tutorials/tutorial-two-python.html
+- `03_pub_sub` https://www.rabbitmq.com/tutorials/tutorial-three-python.html
+
+Celery
+
+- `04_celery`
+
+- Приклад з конспекту [https://textbook.edu.goit.global/python-web-textbook/docs/module-08/module-08-02/celery_04](https://textbook.edu.goit.global/python-web-textbook/docs/module-08/module-08-02/celery_04)
+Запустити, показати.
