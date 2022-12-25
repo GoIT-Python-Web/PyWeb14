@@ -10,4 +10,9 @@ from itemadapter import ItemAdapter
 
 class WarInfoPipeline:
     def process_item(self, item, spider):
+        adapter = ItemAdapter(item)
+        if 'date' in adapter.keys():
+            print('-----------------------------------------')
+            print(f'Можна виконать вставку в БД')
+            print('-----------------------------------------')
         return item

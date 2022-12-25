@@ -43,3 +43,19 @@ scrapy crawl get_links -O links.json
 ```
 
 Цей файл `losses.json` експортуємо в MongoDB хмарну базу з допомогою MongoDB Compass
+
+Также можно через `pipelines.py` виконать вставку в БД.\
+
+```python
+from itemadapter import ItemAdapter
+
+
+class WarInfoPipeline:
+    def process_item(self, item, spider):
+        adapter = ItemAdapter(item)
+        if 'date' in adapter.keys():
+            print('-----------------------------------------')
+            print(f'Можна виконать вставку в БД')
+            print('-----------------------------------------')
+        return item
+```
