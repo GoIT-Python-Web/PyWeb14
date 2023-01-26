@@ -1,18 +1,10 @@
-from __future__ import annotations
-
-from abc import abstractmethod, ABC
-
 """
-В этом примере нарушен принцип подстановки Лисков (далее LSP) - принцип при построении иерархии наследования классов в объектно-ориентированных языках программирования. По сути, правильная иерархия наследования в ООП — это иерархия, построенная согласно LSP, чтобы отвечать принципу открытости-закрытости.
+В этом примере нарушен принцип подстановки Лисков (далее LSP) - принцип при построении иерархии наследования классов
+в объектно-ориентированных языках программирования. По сути, правильная иерархия наследования в ООП — это иерархия,
+построенная согласно LSP, чтобы отвечать принципу открытости-закрытости.
 
 Появление класса SMS приводит к изменению класса NotificationService
 """
-
-
-class Notification(ABC):
-    @abstractmethod
-    def notify(self, message, sender):
-        pass
 
 
 class Contact:
@@ -22,12 +14,12 @@ class Contact:
         self.phone = phone
 
 
-class Email(Notification):
+class Email:
     def notify(self, message, email):
         print(f"Send {message} to email: {email}")
 
 
-class SMS(Notification):
+class SMS:
     def notify(self, message, phone):
         print(f"Send {message} sms to phone: {phone}")
 

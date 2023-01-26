@@ -1,5 +1,4 @@
 from math import pi
-from typing import List
 
 
 class Rect:
@@ -27,8 +26,10 @@ class AreaCalculator:
         return sum
 
 
-ar_sh = AreaCalculator([Rect(10, 10), Rect(4, 5), Circle(20), Rect(3, 3)])
-area = ar_sh.total_area()
-print(area)
+if __name__ == '__main__':
 
-# Согласно принципу Open-closed перенести расчет площади в классы Rect и Circle
+    ar_sh = AreaCalculator([Rect(10, 10), Rect(4, 5), Circle(20), Rect(3, 3)])
+    area = ar_sh.total_area()
+    print(area)
+
+    # Согласно принципу Open-closed перенести расчет площади в классы Rect и Circle

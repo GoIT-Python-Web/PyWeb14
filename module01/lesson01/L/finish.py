@@ -1,12 +1,7 @@
-from __future__ import annotations
+class Notification:
 
-from abc import abstractmethod, ABC
-
-
-class Notification(ABC):
-    @abstractmethod
     def notify(self, message):
-        pass
+        raise NotImplementedError
 
 
 class Contact:
@@ -45,6 +40,9 @@ if __name__ == '__main__':
     notification_SMS = SMS(person.phone)
     notification_email = Email(person.email)
     notification_service = NotificationService(notification_email)
+    notification_service.send('Hello bro')
+
+    notification_service = NotificationService(notification_SMS)
     notification_service.send('Hello bro')
 
 # SMS -> Service

@@ -1,6 +1,4 @@
-from __future__ import annotations
-
-from storage import *
+from storage import JSONStorage, YamlStorage
 
 """
 Более практический пример для принципа Open-closed. Разные хранилища для хранения данных.
@@ -15,6 +13,8 @@ class StorageService:
         return self.storage.get_value(key)
 
 
-# storage = StorageService(JSONStorage('data.json'))
-storage = StorageService(YamlStorage("data.yaml"))
-print(storage.get("username"))
+if __name__ == '__main__':
+    storage_json = StorageService(JSONStorage('data.json'))
+    storage_yaml = StorageService(YamlStorage("data.yaml"))
+    print(storage_json.get("username"))
+    print(storage_yaml.get("username"))

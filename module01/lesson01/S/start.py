@@ -8,7 +8,9 @@ class Person:
         return f"{self.name}: +38({self.operator_code}){self.phone}"
 
 
-person = Person("Alexander", "9995544", "050")
-print(person.get_phone_number())
+if __name__ == '__main__':
 
-# Согласно принципу Single responsibility выделить класс для телефона (адреса). Добавить абстракции
+    person = Person("Alexander", "9995544", "050")
+    print(person.get_phone_number())
+
+# Согласно принципу Single responsibility выделить класс для телефона, адреса м т.д.

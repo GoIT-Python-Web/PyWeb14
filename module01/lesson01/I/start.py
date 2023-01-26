@@ -14,6 +14,7 @@ class ApiClient:
 def pretty_view(data: list[dict]):
     # Сущности не должны зависеть от интерфейсов, которые они не используют
     result = [{f"{el.get('ccy')}": {"buy": float(el.get('buy')), "sale": float(el.get('sale'))}} for el in data]
+    # result это преобразование данных
     pattern = '|{:^10}|{:^10}|{:^10}|'
     print(pattern.format('currency', 'sale', 'buy'))
     for el in result:

@@ -1,15 +1,13 @@
 from math import pi
-from abc import abstractmethod, ABC
-from typing import List
 
 
-class IShape(ABC):
-    @abstractmethod
+class Shape:
+
     def area_of(self):
-        pass
+        raise NotImplementedError
 
 
-class Rect(IShape):
+class Rect(Shape):
     def __init__(self, width, height):
         self.width = width
         self.height = height
@@ -18,7 +16,7 @@ class Rect(IShape):
         return self.width * self.height
 
 
-class Square(IShape):
+class Square(Shape):
     def __init__(self, side):
         self.side = side
 
@@ -26,7 +24,7 @@ class Square(IShape):
         return self.side ** 2
 
 
-class Circle(IShape):
+class Circle(Shape):
     def __init__(self, radius: float):
         self.radius = radius
 
@@ -35,7 +33,7 @@ class Circle(IShape):
 
 
 class AreaCalculator:
-    def __init__(self, shapes: list[IShape]):
+    def __init__(self, shapes: list[Shape]):
         self.shapes = shapes
 
     def total_area(self) -> float:
@@ -45,6 +43,7 @@ class AreaCalculator:
         return sum_
 
 
-ar_sh = AreaCalculator([Rect(10, 10), Rect(4, 5), Circle(20), Rect(3, 3), Square(10)])
-area = ar_sh.total_area()
-print(area)
+if __name__ == '__main__':
+    ar_sh = AreaCalculator([Rect(10, 10), Rect(4, 5), Circle(20), Rect(3, 3), Square(10)])
+    area = ar_sh.total_area()
+    print(area)

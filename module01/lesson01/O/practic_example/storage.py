@@ -1,15 +1,14 @@
 import json
 import yaml
-from abc import abstractmethod, ABC
 
 
-class IStorage(ABC):
-    @abstractmethod
+class Storage:
+
     def get_value(self, key) -> str:
-        pass
+        raise NotImplementedError
 
 
-class JSONStorage(IStorage):
+class JSONStorage(Storage):
     def __init__(self, filename):
         self.filename = filename
 
@@ -19,7 +18,7 @@ class JSONStorage(IStorage):
             return data.get(key, None)
 
 
-class YamlStorage(IStorage):
+class YamlStorage(Storage):
     def __init__(self, filename):
         self.filename = filename
 

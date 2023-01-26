@@ -1,11 +1,10 @@
 import requests
-from abc import abstractmethod, ABC
 
 
-class Connection(ABC):
-    @abstractmethod
+class Connection:
+
     def get_json(self, url):
-        pass
+        raise NotImplementedError
 
 
 class RequestConnection(Connection):
