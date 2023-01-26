@@ -3,29 +3,29 @@ from time import sleep
 
 
 def worker(condition: Condition):
-    print('Run event work')
+    print("Run event work")
     with condition:
         condition.wait()
-        print('Хозяин подарил Доби носок! Можно работать')
+        print("The owner gave Doby a sock! Can work")
 
 
 def master(condition: Condition):
-    print('Master делает тяжелую работу')
+    print("Master does the hard work")
     with condition:
-        print('Даем разрешение работать остальным')
+        print("We give permission for others to work")
         condition.notify_all()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     condition = Condition()
-    master_one = Process(name='master', target=master, args=(condition, ))
+    master_one = Process(name="master", target=master, args=(condition,))
 
-    worker_one = Process(target=worker, args=(condition, ))
-    worker_two = Process(target=worker, args=(condition, ))
+    worker_one = Process(target=worker, args=(condition,))
+    worker_two = Process(target=worker, args=(condition,))
     worker_one.start()
     worker_two.start()
 
     sleep(5)
     master_one.start()
 
-    print('End program')
+    print("End program")

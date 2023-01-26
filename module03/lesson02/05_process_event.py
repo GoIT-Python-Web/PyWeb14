@@ -3,23 +3,23 @@ from time import sleep
 
 
 def example_work(event: Event):
-    print('Run event work')
+    print("Run event work")
     event.wait()
-    print('Flag event is true')
+    print("Flag event is true")
 
 
 def example_work_timeout(event: Event, time: float):
     while not event.is_set():
-        print('Ждем пока не установится флаг event')
+        print("Wait until the event flag is set")
         event_wait = event.wait(time)
-        print('Наш флаг установлен?')
+        print("Has our flag been set?")
         if event_wait:
-            print('Начинаем работать по сигналу')
+            print("We start working on a signal")
         else:
-            print('Все еще ждем пока не установится флаг event')
+            print("Still waiting until the event flag is set")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     event = Event()
     pr = Process(target=example_work, args=(event,))
     pr.start()
@@ -30,4 +30,4 @@ if __name__ == '__main__':
     sleep(5)
     event.set()
 
-    print('End program')
+    print("End program")
