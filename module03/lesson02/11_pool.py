@@ -26,4 +26,4 @@ if __name__ == "__main__":
         p.join()  # дочекатися закінчення всіх процесів
 
 
-print(f"End {current_process().name}")
+    print(f"End {current_process().name}")

@@ -1,0 +1,40 @@
+{% extends "app_instagram/base.html" %}
+
+{% block content %}
+
+{% if messages %}
+<div>
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+  <span>{{ form.non_field_errors }}</span>
+</div>
+{% endif %}
+
+<form action="{% url 'users:login' %}" method="post">
+    {% csrf_token %}
+    <div>
+        <label> Username:
+            {{ form.username }}
+        </label>
+        <span>{{form.errors.first_name}}</span>
+    </div>
+
+    <div>
+        <label>Password:
+            {{ form.password }}
+        </label>
+        <span>{{form.errors.first_name}}</span>
+    </div>
+
+    <div class="grid">
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+</form>
+{% endblock %}
