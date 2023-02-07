@@ -1,15 +1,16 @@
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
 from time import time
+from typing import List
 
 import requests
+from requests.exceptions import MissingSchema
 
 urls = ['http://www.google.com', 'http://www.python.org', 'http://duckduckgo.com', 'http://www.google.com',
-        'http://www.python.org', 'http://duckduckgo.com', 'http://www.google.com', 'http://www.python.org',
-        'http://ttt.ttt']
+        'http://www.python.org', 'http://duckduckgo.com', 'http://www.google.com', 'http://www.python.org', 'ttt']
 
 
-def get_url(url):  # blocking IO operation
+def get_url(url: str) -> (str, str):  # blocking IO operation
     r = requests.get(url)
     return url, r.text[:100]
 
@@ -18,7 +19,7 @@ async def get_url_async():
     loop = asyncio.get_running_loop()
     with ThreadPoolExecutor(3) as pool:
         features = [loop.run_in_executor(pool, get_url, url) for url in urls]
-        r = await asyncio.gather(*features, return_exceptions=False)
+        r = await asyncio.gather(*features, return_exceptions=True)
         print(r)
 
 
@@ -32,7 +33,7 @@ if __name__ == '__main__':
     for url in urls:
         try:
             results.append(get_url(url))
-        except Exception as err:
+        except MissingSchema as err:
             print(err)
     print(results)
     print(time() - start)

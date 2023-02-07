@@ -15,7 +15,7 @@ async def main():
     u1 = asyncio.create_task(get_user_async(1))
     u2 = asyncio.create_task(get_user_async(2))
     u3 = asyncio.create_task(get_user_async(3))
-
+    print(u1, u2, u3)
     return await u1, await u2, await u3
 
 

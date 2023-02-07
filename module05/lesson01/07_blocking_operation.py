@@ -3,7 +3,7 @@ from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 
 
 def io_operation():
-    with open('../main.py', 'r') as f:
+    with open(__file__, 'r') as f:
         return f.read(100)
 
 
@@ -15,7 +15,9 @@ def cpu_operation(power: int, p: int):
 async def main():
     loop = asyncio.get_running_loop()
 
-    r = await loop.run_in_executor(None, io_operation)
+    f = loop.run_in_executor(None, io_operation)
+    print(f)
+    r = await f
     print(r)
 
     r = await loop.run_in_executor(None, cpu_operation, 2, 6)

@@ -2,20 +2,19 @@ import asyncio
 
 
 async def baz():
+    print('Before sleep')
     await asyncio.sleep(1)
+    print('After sleep')
     return 'Hello world!'
 
 
-async def main() -> str:
+async def main() -> None:
     r = baz()
     print(r)  # coroutine
     result = await r  # result
-    print(f'In function: {result}')
-    return result
+    print(result)
 
 
 if __name__ == '__main__':
-    msg = asyncio.run(main())
-    print(f'In main process: {msg}')
-
+    asyncio.run(main())
 
