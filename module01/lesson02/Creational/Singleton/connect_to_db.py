@@ -19,10 +19,12 @@ class Settings(metaclass=MetaSingleton):
     port: int = 3306
 
 
-connect = Settings()
+if __name__ == '__main__':
 
-connect_other = Settings()
+    connect = Settings()
 
-print(connect_other.port)
-connect.port = 5634
-print(connect_other.port)
+    connect_other = Settings()
+
+    print(connect_other.port)
+    connect.port = 5634
+    print(connect_other.port)

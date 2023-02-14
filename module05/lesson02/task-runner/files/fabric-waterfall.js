@@ -1,3 +1,4 @@
+// Second
 function delay(ms) {
     return () => {
         return new Promise(resolve => setTimeout(() => {

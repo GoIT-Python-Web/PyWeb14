@@ -1,4 +1,6 @@
 import asyncio
+import logging
+
 import websockets
 
 
@@ -13,5 +15,10 @@ async def main():
     async with websockets.serve(handler, "localhost", 8000):
         await asyncio.Future()  # run forever
 
+
 if __name__ == '__main__':
-    asyncio.run(main())
+    logging.basicConfig(level=logging.INFO)
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt as err:
+        print('Stop server')

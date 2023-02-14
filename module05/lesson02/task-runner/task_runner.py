@@ -27,15 +27,13 @@ async def main():
     files = AsyncPath('.').joinpath('files').glob('*.js')
     print(files)
     queue_produce = asyncio.Queue()
-    event = asyncio.Event()
 
     producers = [asyncio.create_task(producer(file, queue_produce)) async for file in files]
-    c_consumer = asyncio.create_task(consumer('main.js', queue_produce))
+    task_consumer = asyncio.create_task(consumer('main.js', queue_produce))
 
     await asyncio.gather(*producers)
-    event.set()
     await queue_produce.join()
-    c_consumer.cancel()
+    task_consumer.cancel()
     print('Completed')
 
 

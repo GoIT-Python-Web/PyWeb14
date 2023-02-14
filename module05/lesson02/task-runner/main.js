@@ -1,3 +1,4 @@
+// First
 function delay() {
    return new Promise(resolve => setTimeout(() => {
        resolve();
@@ -12,6 +13,7 @@ function waterfall(list) {
 }
 
 waterfall([ delay, delay, delay ]);
+// Second
 function delay(ms) {
     return () => {
         return new Promise(resolve => setTimeout(() => {
@@ -28,6 +30,7 @@ function waterfall(list) {
 }
 
 waterfall([delay(3000), delay(1000), delay(2000)]);
+// Third
 function loadImage(url) {
     return new Promise(resolve => {
         const image = new Image();

@@ -164,3 +164,13 @@ LEFT JOIN contacts c ON u.id = c.user_id;
 ```
 
 Далі в залежності від запитань. Зв'язок багато до багатьох на наступному занятті.
+
+Створити індекс
+
+```sql
+CREATE INDEX index_name ON table_name (column_name);
+```
+
+```sql
+CREATE INDEX index_name ON table_name USING btree (column_name);
+```

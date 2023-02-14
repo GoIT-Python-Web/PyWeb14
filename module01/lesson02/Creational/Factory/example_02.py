@@ -4,6 +4,7 @@
 Пример кода ниже показывает использование паттерна "Фабрика" для создания объектов различных типов автомобилей:
 """
 
+
 class Car:
     def __init__(self):
         self._type = None
@@ -14,11 +15,13 @@ class Car:
 
 class SportsCar(Car):
     def __init__(self):
+        super().__init__()
         self._type = "Sports car"
 
 
 class FamilyCar(Car):
     def __init__(self):
+        super().__init__()
         self._type = "Family car"
 
 

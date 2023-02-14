@@ -1,12 +1,12 @@
 from enum import Enum
 from abc import ABC, abstractmethod
 
-# https://refactoring.guru/uk/design-patterns/factory-method
+# Abstract Factory
 
 
 class OperationType(str, Enum):
-    SUM = "sum"
-    MUL = "mul"
+    SUM = "summation operation"
+    MUL = "multiplication operation"
 
 
 class Operation(ABC):
@@ -31,7 +31,7 @@ class Adder(Operation):
         return sum(self.data)
 
     def info(self):
-        return OperationType.SUM.name
+        return OperationType.SUM.value
 
 
 class Multiplier(Operation):
@@ -46,7 +46,7 @@ class Multiplier(Operation):
         return mul
 
     def info(self):
-        return OperationType.MUL.name
+        return OperationType.MUL.value
 
 
 class Factory(ABC):

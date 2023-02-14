@@ -15,5 +15,6 @@ class GreetingDecorator:
         return base_greet.upper()
 
 
-message = GreetingDecorator(Greeting('Yurii'))
-print(message.greet())
+if __name__ == '__main__':
+    message = GreetingDecorator(Greeting('Yurii'))
+    print(message.greet())
