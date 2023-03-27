@@ -5,7 +5,7 @@ from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 
-engine = create_engine('sqlite:///:memory:')
+engine = create_engine('sqlite:///:memory:', echo=False)
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
@@ -57,7 +57,8 @@ if __name__ == '__main__':
     person = session.query(Person).one()
     print(person.id, person.fullname)
     print('Знайти адреси з користувачами')
-    addresses = session.query(Address).join(Address.person).all()
+    # addresses = session.query(Address).join(Address.person).all()
+    addresses = session.query(Address).all()
     for address in addresses:
         print(
             f"id: {address.id}, code: {address.post_code}, street: {address.street_name}, owner: {address.person.fullname}")

@@ -1,3 +1,4 @@
+import sys
 from multiprocessing import Process, Event
 from time import sleep
 
@@ -6,6 +7,7 @@ def example_work(event: Event):
     print("Run event work")
     event.wait()
     print("Flag event is true")
+    sys.exit(0)
 
 
 def example_work_timeout(event: Event, time: float):
@@ -17,6 +19,7 @@ def example_work_timeout(event: Event, time: float):
             print("We start working on a signal")
         else:
             print("Still waiting until the event flag is set")
+    sys.exit(0)
 
 
 if __name__ == "__main__":

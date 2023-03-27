@@ -1,4 +1,4 @@
-from storage import JSONStorage, YamlStorage
+from storage import Storage, JSONStorage, YamlStorage
 
 """
 Более практический пример для принципа Open-closed. Разные хранилища для хранения данных.
@@ -6,7 +6,7 @@ from storage import JSONStorage, YamlStorage
 
 
 class StorageService:
-    def __init__(self, storage: JSONStorage | YamlStorage):
+    def __init__(self, storage: Storage):
         self.storage = storage
 
     def get(self, key: str) -> str:

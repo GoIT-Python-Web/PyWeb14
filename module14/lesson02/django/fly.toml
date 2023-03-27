@@ -1,0 +1,46 @@
+# fly.toml file generated for lively-night-7091 on 2023-03-11T20:48:05+02:00
+
+app = "lively-night-7091"
+kill_signal = "SIGINT"
+kill_timeout = 5
+primary_region = "ams"
+processes = []
+
+[env]
+  SECRET_KEY = "django-insecure-rjx-#vrn*h6u_1*6^jyx(vr$m!(#5_m8$ei03ue34-96rtklxo"
+  DB_NAME = "bpdctlww"
+  DB_USER = "bpdctlww"
+  DB_PASSWORD = "bt_UAZbXLrK0-lqJFzq7Xozxs3lSa6E9"
+  DB_HOST = "mel.db.elephantsql.com"
+  DB_PORT = 5432
+
+  EMAIL_HOST_USER = "example@meta.ua"
+  EMAIL_HOST_PASSWORD = "password"
+[experimental]
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 8000
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"

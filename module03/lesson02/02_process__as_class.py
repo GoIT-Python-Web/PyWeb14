@@ -1,3 +1,4 @@
+import sys
 from multiprocessing import Process
 
 
@@ -9,6 +10,7 @@ class MyProcess(Process):
 
     def run(self) -> None:
         self.kwargs.get('log')(f"args: {self.args}")
+        sys.exit(0)
 
 
 def log(msg):

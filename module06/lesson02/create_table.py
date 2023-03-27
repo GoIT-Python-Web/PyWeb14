@@ -1,4 +1,4 @@
-from psycopg2 import DatabaseError
+from from psycopg2 import DatabaseError
 from lesson02.connection import create_connection
 
 

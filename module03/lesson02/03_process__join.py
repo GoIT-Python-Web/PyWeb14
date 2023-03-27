@@ -1,3 +1,4 @@
+import sys
 from multiprocessing import Process
 from time import sleep
 
@@ -5,6 +6,7 @@ from time import sleep
 def example_work(params):
     sleep(0.5)
     print(params)
+    sys.exit(0)
 
 
 if __name__ == '__main__':

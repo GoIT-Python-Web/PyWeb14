@@ -1,12 +1,12 @@
-'''
-Задача: Сортировка файлов в папке. Скопировать файлы из указанной папки и положить в новую папку с
-расширениям этого файла.
-'''
+"""
+Завдання: Сортування файлів у папці. Скопіювати файли із зазначеної папки і покласти в нову папку з
+розширенням цього файлу.
+"""
 
 import argparse
 from pathlib import Path
 from shutil import copyfile
-from multiprocessing import Pool, current_process, cpu_count
+from multiprocessing import Pool, cpu_count
 
 parser = argparse.ArgumentParser(description='Sorting folder')
 parser.add_argument('--source', '-s', required=True, help='Source folder')

@@ -1,3 +1,4 @@
+import sys
 from random import randint
 from multiprocessing import Process, Barrier, current_process
 from time import sleep, ctime
@@ -10,6 +11,7 @@ def worker(barrier: Barrier):
     barrier.wait()
     print(f"Barrier crossed for {name}")
     print(f"End work thread {name}: {ctime()}")
+    sys.exit(0)
 
 
 if __name__ == "__main__":

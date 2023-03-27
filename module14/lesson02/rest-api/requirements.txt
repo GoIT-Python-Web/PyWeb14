@@ -1,0 +1,13 @@
+fastapi
+sqlalchemy
+alembic
+psycopg2-binary
+pydantic[dotenv]
+libgravatar
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+fastapi-mail
+redis
+fastapi-limiter
+cloudinary

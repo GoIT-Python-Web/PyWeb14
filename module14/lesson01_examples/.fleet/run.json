@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "Run my tests",
+            "type": "command",
+            "program": "python3",
+            "args": ["-m", "unittest", "discover", "-s", "./tests"]
+        }
+    ]
+}

@@ -1,3 +1,4 @@
+import sys
 from multiprocessing import Process, Semaphore, current_process, Manager
 from random import randint
 from time import sleep
@@ -10,7 +11,8 @@ def worker(semaphore: Semaphore, r: dict):
         print(f'Work {name}')
         delay = randint(1, 2)
         r[name] = delay
-        sleep(0.2)  # Имитируем какую-то работу
+        sleep(0.2)  # Імітуємо якусь роботу
+        sys.exit(0)
 
 
 if __name__ == '__main__':
@@ -23,9 +25,9 @@ if __name__ == '__main__':
             pr.start()
             prs.append(pr)
 
-        for pr in prs:
-            pr.join()
+        [pr.join() for pr in prs]
 
         print(result)
 
     print('End program')
+

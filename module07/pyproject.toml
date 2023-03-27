@@ -10,6 +10,8 @@ SQLAlchemy = "^1.4.43"
 psycopg2 = "^2.9.5"
 Faker = "^15.3.2"
 alembic = "^1.8.1"
+asyncpg = "^0.27.0"
+aiosqlite = "^0.18.0"
 
 [tool.poetry.dev-dependencies]
 

@@ -3,13 +3,13 @@ class ValidPhoneException(Exception):
     pass
 
 
-class PersonFormatterInfo:
+class PersonInfo:
 
     def value_of(self) -> str:
         raise NotImplementedError
 
 
-class PersonPhoneNumber(PersonFormatterInfo):
+class PersonPhoneNumber(PersonInfo):
     def __init__(self, phone: str, operator_code: str):
         if operator_code != '050':
             raise ValidPhoneException('Це не валідний оператор')
@@ -20,7 +20,7 @@ class PersonPhoneNumber(PersonFormatterInfo):
         return f'+38({self.operator_code}){self.phone}'
 
 
-class PersonAddress(PersonFormatterInfo):
+class PersonAddress(PersonInfo):
     def __init__(self, zip, city, street):
         self.zip = zip
         self.city = city
@@ -31,7 +31,7 @@ class PersonAddress(PersonFormatterInfo):
 
 
 class Person:
-    def __init__(self, name: str, phone_: PersonFormatterInfo, address_: PersonFormatterInfo):
+    def __init__(self, name: str, phone_: PersonPhoneNumber, address_: PersonAddress):
         self.name = name
         self.phone = phone_
         self.address = address_

@@ -10,6 +10,7 @@ requests = "^2.28.1"
 SQLAlchemy = "^1.4.44"
 beautifulsoup4 = "^4.11.1"
 Scrapy = "^2.7.1"
+scrapyscript = "^1.1.5"
 
 [tool.poetry.dev-dependencies]
 

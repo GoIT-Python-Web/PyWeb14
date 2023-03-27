@@ -1,43 +1,39 @@
 import requests
-import xmltodict
-from abc import abstractmethod, ABC
 
 
-class Connection(ABC):
-    @abstractmethod
-    def get_data(self, url):
-        pass
-
-
-class RequestConnection(Connection):
-    def __init__(self, request: requests):
+class RequestConnection:
+    def __init__(self, request):
         self.request = request
 
-    def get_data(self, url):
-        return self.request.get(url)
+    def get_json_from_url(self, url):
+        return self.request.get(url).json()
 
 
 class ApiClient:
-    def __init__(self, fetch: Connection):
+    def __init__(self, fetch: RequestConnection):
         self.fetch = fetch
 
-    def get_xml(self, url):
-        response = self.fetch.get_data(url)
-        return response.text
+    def get_data(self, url):
+        response = self.fetch.get_json_from_url(url)
+        return response
 
 
-def parse_usd(data):
-    exc = data.get('exchangerates', None)
-    if exc:
-        return exc.get('row')[0].get('exchangerate').get('@buy')
-    return None
+def data_adapter(data: dict):
+    return [{f"{el.get('ccy')}": {"buy": float(el.get('buy')), "sale": float(el.get('sale'))}} for el in data]
 
 
-def xml_adapter(xml):
-    return dict(xmltodict.parse(xml))
+def pretty_view(data):
+    pattern = '|{:^10}|{:^10}|{:^10}|'
+    print(pattern.format('currency', 'sale', 'buy'))
+    for el in data:
+        currency, *_ = el.keys()
+        buy = el.get(currency).get('buy')
+        sale = el.get(currency).get('sale')
+        print(pattern.format(currency, sale, buy))
 
 
 if __name__ == '__main__':
-    client = ApiClient(RequestConnection(requests))
-    data = client.get_xml('https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=11')
-    print(parse_usd(xml_adapter(data)))
+    api_client = ApiClient(RequestConnection(requests))
+
+    data = api_client.get_data('https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=11')
+    pretty_view(data_adapter(data))

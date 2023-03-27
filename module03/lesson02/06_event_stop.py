@@ -1,3 +1,4 @@
+import sys
 from multiprocessing import Process, Event
 from time import sleep
 
@@ -8,7 +9,7 @@ def example_work(event_for_exit: Event):
         print('Run event work')
 
         if event_for_exit.is_set():
-            break
+            sys.exit(0)
 
 
 if __name__ == '__main__':

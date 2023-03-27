@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Password Reset</title>
+</head>
+<body>
+<p>Hello {{username}},</p>
+<p>Thank you for signing up for our service.</p>
+<p>Please click the following link to verify your email address:</p>
+<p>
+    <a href="{{host}}api/auth/confirmed_email/{{token}}">
+        Verification link
+    </a>
+</p>
+<p>If you did not sign up for our service, please ignore this email.</p>
+<p>Thanks,</p>
+<p>The Our Team</p>
+</body>
+</html>

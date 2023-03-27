@@ -1,12 +1,14 @@
+import sys
 from multiprocessing import Process, Condition
 from time import sleep
 
 
 def worker(condition: Condition):
-    print("Run event work")
+    print("Run event work. Wait...")
     with condition:
         condition.wait()
         print("The owner gave Doby a sock! Can work")
+        sys.exit(0)
 
 
 def master(condition: Condition):
@@ -14,6 +16,7 @@ def master(condition: Condition):
     with condition:
         print("We give permission for others to work")
         condition.notify_all()
+        sys.exit(0)
 
 
 if __name__ == "__main__":
