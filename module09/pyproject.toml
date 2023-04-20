@@ -11,6 +11,7 @@ SQLAlchemy = "^1.4.44"
 beautifulsoup4 = "^4.11.1"
 Scrapy = "^2.7.1"
 scrapyscript = "^1.1.5"
+selenium = "^4.8.2"
 
 [tool.poetry.dev-dependencies]
 
