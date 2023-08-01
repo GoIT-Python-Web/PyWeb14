@@ -1,29 +1,33 @@
-from threading import Event, Thread
+from threading import Event, Thread, Timer
 from time import sleep
 import logging
 
 
-def master(event: Event):
-    sleep(1)  # Some work
-    logging.debug('Set event...')
-    event.set()
+
+def склад(поступлення: Event):
+    sleep(1)  # 
+    logging.debug('Прибув товар...')
+    поступлення.set()
+    
+
+def відправка_користувачу(поступлення: Event):
+    logging.debug('Чекаєм на товар...')
+    sleep(0.001)
+    поступлення.wait()
+    logging.debug('Deliveri...')
 
 
-def worker(event: Event):
-    logging.debug(f'waiting...')
-    event.wait()
-    # some work
-    logging.debug(f'finished')
 
-
-if __name__ == '__main__':
+def main():
     logging.basicConfig(level=logging.DEBUG, format="%(threadName)s %(message)s")
     e = Event()
 
-    m = Thread(target=master, args=(e, ))
-    w2 = Thread(target=worker, args=(e, ))
-    w1 = Thread(target=worker, args=(e, ))
+    storage = Timer( 5,function=склад, args=(e, ))
+    client1 = Thread(target=відправка_користувачу, args=(e, ))
+    client2 = Thread(target=відправка_користувачу, args=(e, ))
 
-    w1.start()
-    w2.start()
-    m.start()
+    client1.start()
+    client2.start()
+    storage.start()
+
+main()
