@@ -1,4 +1,3 @@
-import platform
 from datetime import datetime
 import logging
 

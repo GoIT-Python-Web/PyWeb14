@@ -14,7 +14,9 @@ class HttpGetHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         data = self.rfile.read(int(self.headers['Content-Length']))
         self.save_data_to_json(data)
-        self.send_response(302)
+        print('recieved some data')
+        print(data)
+        self.send_response(200)
         self.send_header('Location', '/contact')
         self.end_headers()
 
@@ -71,7 +73,7 @@ class HttpGetHandler(BaseHTTPRequestHandler):
 
 
 def run(server_class=HTTPServer, handler_class=HttpGetHandler):
-    server_address = ('', 8000)
+    server_address = ('', 8001)
     http = server_class(server_address, handler_class)
     try:
         http.serve_forever()
