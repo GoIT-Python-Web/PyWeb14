@@ -16,8 +16,6 @@ def main():
         if not data:
             break
         print(f'received message: {data}')
-        message = input('--> ')
-        conn.send(message.encode())
     conn.close()
 
 

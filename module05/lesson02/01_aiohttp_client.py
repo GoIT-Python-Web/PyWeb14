@@ -2,7 +2,7 @@ import aiohttp
 import asyncio
 import platform
 
-urls = ['https://www.google.com', 'https://www.python.org/asdf', 'https://duckduckgo.com', 'http://test']
+urls = ['https://www.google.com', 'https://www.python.org', 'https://duckduckgo.com']
 
 
 async def main():

@@ -12,15 +12,26 @@ def get_user_sync(uid: int) -> dict:
 
 
 async def get_user_async(uid: int) -> dict:
-    await asyncio.sleep(0.5)
-    return {'id': uid, 'name': fake.name(), 'company': fake.company(), 'email': fake.email()}
-
+    initial_data = {'id': uid, 'name': fake.name(), 'company': fake.company()}
+    # simulate request
+    asyncio.sleep(0.5)
+    initial_data['email']= fake.email()
+    yield initial_data
 
 async def main():
-    r = await asyncio.gather(
+    list_of_tasks = [
         get_user_async(1),
         get_user_async(2),
-        get_user_async(3)
+        get_user_async(3),
+        get_user_async(11),
+        get_user_async(12),
+        get_user_async(13),
+        get_user_async(14),
+
+    ]
+
+    r = await asyncio.gather(
+        *list_of_tasks
     )
     return r
 
@@ -31,9 +42,4 @@ if __name__ == '__main__':
     print(r)
     print(time() - start)
     print('------------------------------')
-    start = time()
-    user4 = get_user_sync(4)
-    user5 = get_user_sync(5)
-    user6 = get_user_sync(6)
-    print(user4, user5, user6)
-    print(time() - start)
+   
