@@ -1,0 +1,17 @@
+-- Table: tasks
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(255) NOT NULL
+);
+
+-- Table: tasks
+DROP TABLE IF EXISTS tasks;
+CREATE TABLE tasks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    owner_id INTEGER,
+    FOREIGN KEY (owner_id) REFERENCES users (id)
+    ON DELETE CASCADE
+);
