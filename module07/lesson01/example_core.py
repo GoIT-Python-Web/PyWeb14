@@ -30,6 +30,9 @@ if __name__ == '__main__':
         ins_user = users.insert().values(fullname='Anna Saifulina')
         print(str(ins_user))
         result_user = conn.execute(ins_user)
+        ins_user = users.insert().values()
+        result_user = conn.execute(ins_user)
+
 
         user_select = select(users)
         result = conn.execute(user_select)
