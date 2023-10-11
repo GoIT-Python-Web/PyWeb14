@@ -55,9 +55,9 @@ class QuotesSpider(scrapy.Spider):
 
     def parse(self, response, *args):
         for quote in response.xpath("/html//div[@class='quote']"):
-            keywords = quote.xpath("div[@class='tags']/a/text()").extract()
-            author = quote.xpath("span/small/text()").get().strip()
-            q = quote.xpath("span[@class='text']/text()").get().strip()
+            keywords = quote.css(".tags .tag ::text").getall()
+            author = quote.css(".author ::text").get().strip()
+            q = quote.css(".text ::text").get().strip()
             yield QuoteItem(keywords=keywords, author=author, quote=q)
             yield response.follow(url=self.start_urls[0] + quote.xpath('span/a/@href').get(),
                                   callback=self.nested_parse_author)
@@ -78,3 +78,23 @@ if __name__ == '__main__':
     process = CrawlerProcess()
     process.crawl(QuotesSpider)
     process.start()
+
+
+
+# ban IP
+# ban 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
