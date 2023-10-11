@@ -1,0 +1,7 @@
+Faker==19.3.0
+fastapi==0.95.0
+fastapi-sso==0.7.2
+motor==3.3.1
+pydantic==1.10.7
+pymongo==4.5.0
+uvicorn
